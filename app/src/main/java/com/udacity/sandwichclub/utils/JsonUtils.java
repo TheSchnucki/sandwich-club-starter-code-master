@@ -15,15 +15,24 @@ public class JsonUtils {
         Sandwich finalSandwich = new Sandwich();
         try {
             JSONObject sandwichDetails = new JSONObject(json);
+
             JSONObject name = sandwichDetails.getJSONObject("name");
-            String mainName = name.getString("mainName");
-            Log.v(TAG, "Sandwich Main Name: "+ mainName);
+            finalSandwich.setMainName(name.getString("mainName"));
+
+            //TODO: Also known as
+
+            finalSandwich.setPlaceOfOrigin(sandwichDetails.getString("placeOfOrigin"));
+
+            finalSandwich.setDescription(sandwichDetails.getString("description"));
+
+            finalSandwich.setImage(sandwichDetails.getString("image"));
+
+            //TODO: Ingredience
+
+
         } catch (final JSONException e) {
             Log.e(TAG, "JSON parsing error: ");
         }
-
-
-
 
         return null;
     }
