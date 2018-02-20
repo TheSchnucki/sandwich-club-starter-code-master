@@ -27,8 +27,11 @@ public class JsonUtils {
             finalSandwich.setMainName(name.getString("mainName"));
 
             JSONArray aka = (JSONArray) name.get("alsoKnownAs");
-            for (int i=0; i< aka.length(); i++){
-                akaList.add((String)aka.get(i));
+            if (aka != null) {
+                for (int i = 0; i < aka.length(); i++) {
+                    akaList.add(aka.getString(i));
+                }
+                finalSandwich.setAlsoKnownAs(akaList);
             }
 
             finalSandwich.setPlaceOfOrigin(sandwichDetails.getString("placeOfOrigin"));
@@ -38,8 +41,11 @@ public class JsonUtils {
             finalSandwich.setImage(sandwichDetails.getString("image"));
 
             JSONArray ingredients = (JSONArray) sandwichDetails.get("ingredients");
-            for (int i=0; i< ingredients.length(); i++){
-                ingredientsList.add((String)ingredients.get(i));
+            if (ingredients != null) {
+                for (int i = 0; i < ingredients.length(); i++) {
+                    ingredientsList.add(ingredients.getString(i));
+                }
+                finalSandwich.setIngredients(ingredientsList);
             }
 
             return finalSandwich;
